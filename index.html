@@ -7,3 +7,27 @@
     <a href="https://drive.google.com/file/d/1KVh-ktrJAxk7dokIAjRT51WUcIzPI5e7/view?usp=sharing"><strong>Winnigames2024Shuter_V_2.0.1</strong></a>
   </body>
 </html>
+
+
+extends Control
+
+class_name BaseHUD
+
+func _update_ammo_ui(curr_ammo_on_mag: int, curr_ammo: int) -> void:
+	# Используйте get_node_or_null для безопасности
+	var label_curr_ammo = %BaseHUD/VBoxContainer/BottomBar/Control/Panel/MarginContainer/HBoxContainer/AmmoLabelsBar/HBoxContainer/LabelCurrAmmo
+	var curr_ammo_on_mag_label = %BaseHUD/VBoxContainer/BottomBar/Control/Panel/MarginContainer/HBoxContainer/AmmoLabelsBar/HBoxContainer/LabelCurrAmmoOnMag
+	
+	# Или ищите по прямому пути, если % не работает
+	# var label_curr_ammo = find_child("LabelCurrAmmo", true, false)
+	#var curr_ammo_on_mag_label = find_child("LabelCurrAmmoOnMag", true, false)
+	
+	if label_curr_ammo:
+		label_curr_ammo.text = str(curr_ammo)
+	else:
+		printerr("LabelCurrAmmo не найден")
+	
+	if curr_ammo_on_mag_label:
+		curr_ammo_on_mag_label.text = str(curr_ammo_on_mag)
+	else:
+		printerr("CurrAmmoOnMag не найден")
